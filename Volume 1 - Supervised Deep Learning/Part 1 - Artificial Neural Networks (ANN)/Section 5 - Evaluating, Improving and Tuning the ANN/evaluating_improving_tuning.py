@@ -115,9 +115,9 @@ def build_classifier():
 classifier = KerasClassifier(build_fn=build_classifier, batch_size=10, epochs=100)
 accuracies = cross_val_score(estimator=classifier, X=X_train, y=y_train, cv=10, n_jobs=-1)
 mean = accuracies.mean()
-print(f"Mean: {mean}")
+print(f'Mean: {mean}')
 variance = accuracies.std()
-print(f"Variance: {variance}")
+print(f'Variance: {variance}')
 
 # Improving the ANN
 # Dropout Regularization to reduce overfitting if needed
@@ -142,12 +142,10 @@ classifier = KerasClassifier(build_fn=build_classifier)
 parameters = {'batch_size': [25, 32],
               'epochs': [100, 500],
               'optimizer': ['adam', 'rmsprop']}
-grid_search = GridSearchCV(estimator=classifier,
-                           param_grid=parameters,
-                           scoring='accuracy',
-                           cv=10)
+grid_search = GridSearchCV(estimator=classifier, param_grid=parameters, scoring='accuracy', cv=10)
 grid_search = grid_search.fit(X_train, y_train)
 best_parameters = grid_search.best_params_
-print(f"Best parameters: {best_parameters}")
+print(f'Best parameters: {best_parameters}')
 best_accuracy = grid_search.best_score_
-print(f"Best Accuracy: {best_accuracy}")
+print(f'Best Accuracy: {best_accuracy}')
+
