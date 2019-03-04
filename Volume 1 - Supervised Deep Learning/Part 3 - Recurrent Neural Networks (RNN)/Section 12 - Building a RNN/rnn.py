@@ -19,12 +19,14 @@ training_set_scaled = sc.fit_transform(training_set)
 # Creating a data structure with 60 timesteps and 1 output
 X_train = []
 y_train = []
-for i in range(60, 1258):
+for i in range(60, 1258):  # pętla od 60 (bo 60 poprzednich trzeba wziąć) do końca zbioru
     X_train.append(training_set_scaled[i-60:i, 0])
     y_train.append(training_set_scaled[i, 0])
 X_train, y_train = np.array(X_train), np.array(y_train)
 
 # Reshaping
+# poniżej wymiary (X_train.shape[0], X_train.shape[1], 1)
+# czyli liczba próbek, liczba sekwencji czasowych w próbce, liczba zmiennych obliczanych
 X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
 
 
